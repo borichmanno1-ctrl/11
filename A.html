@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给宝宝的惊喜</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+</head>
+<body>
+    <!-- 初始页面 -->
+    <div class="start-page" id="startPage">
+        <div class="click-text">宝宝点这里</div>
+        <div class="heart-btn" id="heartBtn">
+            <i class="fas fa-heart"></i>
+        </div>
+    </div>
+    
+    <!-- 爱心树页面 -->
+    <div class="tree-page" id="treePage">
+        <div class="tree-container" id="treeContainer"></div>
+    </div>
+    
+    <!-- 相册页面 -->
+    <div class="album-page" id="albumPage">
+        <div class="slideshow-container" id="slideshowContainer">
+            <!-- 照片将通过JavaScript动态添加 -->
+        </div>
+    </div>
+    
+    <!-- 烟花页面 -->
+    <div class="fireworks-page" id="fireworksPage">
+        <canvas class="fireworks-canvas" id="fireworksCanvas"></canvas>
+        <div class="blessing-text" id="blessingText">
+            祝夏子涵小朋友2026年<br>
+            平安快乐，笑口常开，财源广进
+        </div>
+    </div>
+    
+    <!-- 加载指示器 -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">加载中，请稍候...</div>
+    </div>
+    
+    <!-- 背景音乐控制 -->
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-volume-up"></i>
+    </div>
+    
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="audio/background-music.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

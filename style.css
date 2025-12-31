@@ -1,0 +1,439 @@
+/* 重置和基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffe6f2;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 初始页面 */
+.start-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffe6f2 0%, #ffd1e6 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 1s ease;
+    opacity: 1;
+}
+
+.start-page.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.click-text {
+    font-size: 24px;
+    color: #ff3366;
+    margin-bottom: 40px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(255, 51, 102, 0.2);
+    animation: pulse 1.5s infinite;
+    letter-spacing: 2px;
+}
+
+.heart-btn {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #ff3366 0%, #ff6699 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.4);
+    border: none;
+    outline: none;
+}
+
+.heart-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(255, 51, 102, 0.5);
+}
+
+.heart-btn:active {
+    transform: scale(0.95);
+}
+
+.heart-btn i {
+    font-size: 48px;
+    color: white;
+}
+
+/* 爱心树页面 */
+.tree-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffe6f2 0%, #ffd1e6 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+}
+
+.tree-page.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.tree-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 500px;
+}
+
+/* 相册页面 */
+.album-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 4;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.album-page.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.slideshow-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    object-fit: cover;
+    background-color: #000;
+    display: none;
+}
+
+.photo-slide.active {
+    opacity: 1;
+    display: block;
+}
+
+/* 烟花页面 */
+.fireworks-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.fireworks-page.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.fireworks-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.blessing-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffcc00;
+    font-size: 32px;
+    text-align: center;
+    width: 90%;
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+    opacity: 0;
+    animation: textFadeIn 2s forwards 1s;
+    line-height: 1.6;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+    border-radius: 15px;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+/* 加载指示器 */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.loading.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid #ff3366;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* 背景音乐控制 */
+.music-control {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 51, 102, 0.9) 0%, rgba(255, 102, 153, 0.9) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.music-control i {
+    font-size: 28px;
+    color: white;
+}
+
+/* 动画定义 */
+@keyframes pulse {
+    0% { 
+        transform: scale(1); 
+        opacity: 0.8; 
+        text-shadow: 2px 2px 4px rgba(255, 51, 102, 0.2);
+    }
+    50% { 
+        transform: scale(1.1); 
+        opacity: 1; 
+        text-shadow: 3px 3px 6px rgba(255, 51, 102, 0.4);
+    }
+    100% { 
+        transform: scale(1); 
+        opacity: 0.8; 
+        text-shadow: 2px 2px 4px rgba(255, 51, 102, 0.2);
+    }
+}
+
+@keyframes textFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translate(-50%, -40%);
+    }
+    to { 
+        opacity: 1; 
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes heartFloat {
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-15px) rotate(5deg); 
+    }
+    100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .click-text { 
+        font-size: 20px; 
+        margin-bottom: 30px;
+    }
+    
+    .heart-btn {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .heart-btn i {
+        font-size: 42px;
+    }
+    
+    .blessing-text { 
+        font-size: 24px; 
+        padding: 20px;
+    }
+    
+    .music-control {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .music-control i {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .click-text { 
+        font-size: 18px; 
+        margin-bottom: 25px;
+    }
+    
+    .heart-btn {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .heart-btn i {
+        font-size: 36px;
+    }
+    
+    .blessing-text { 
+        font-size: 20px; 
+        padding: 15px;
+    }
+    
+    .music-control {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .music-control i {
+        font-size: 22px;
+    }
+    
+    .loading-text {
+        font-size: 16px;
+    }
+    
+    .spinner {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* 横屏适配 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .start-page {
+        flex-direction: row;
+    }
+    
+    .click-text {
+        margin-bottom: 0;
+        margin-right: 30px;
+    }
+    
+    .heart-btn {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .heart-btn i {
+        font-size: 32px;
+    }
+}
+/* 添加祝福文字闪烁动画 */
+@keyframes blessingBlink {
+    0% { 
+        text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+        color: #ffcc00;
+    }
+    50% { 
+        text-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00, 0 0 45px #ffcc00;
+        color: #ffff66;
+    }
+    100% { 
+        text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+        color: #ffcc00;
+    }
+}
+
+/* 更新祝福文字样式 */
+.blessing-text {
+    /* 原有样式保持不变... */
+    animation: textFadeIn 2s forwards 1s, blessingBlink 3s infinite 3s;
+}
