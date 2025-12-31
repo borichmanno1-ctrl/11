@@ -15,7 +15,7 @@ const loading = document.getElementById('loading');
 // 配置
 const CONFIG = {
     photoCount: 14, // 照片数量（根据您有14张图）
-    photoPrefix: 'images/photo', // 照片路径前缀
+    photoPrefix: 'photo', // 照片路径前缀
     photoExtension: '.jpg', // 照片扩展名
     albumDuration: 30, // 相册播放总时长（秒）
     slideDuration: 2, // 每张照片显示时间（秒）
@@ -678,4 +678,5 @@ window.addEventListener('beforeunload', () => {
 // 添加触摸事件支持
 document.addEventListener('touchmove', function(e) {
     e.preventDefault();
+
 }, { passive: false });
